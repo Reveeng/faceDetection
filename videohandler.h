@@ -8,6 +8,7 @@
 #include "opencv2/opencv.hpp"
 #include "capturethread.h"
 
+
 class VideoHandler: public QObject
 {
     Q_OBJECT
@@ -28,9 +29,11 @@ private slots:
 
 private:
     QAbstractVideoSurface * m_videoSurface;
+    QVideoSurfaceFormat format;
     CaptureThread* capturer;
     QMutex* data_lock;
     cv::Mat currentFrame;
+    dlib::frontal_face_detector detector;
 };
 
 #endif // VIDEOHANDLER_H

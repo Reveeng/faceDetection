@@ -13,6 +13,8 @@ SOURCES += \
 
 RESOURCES += qml.qrc
 
+QMAKE_CXXFLAGS_RELEASE += -mavx
+
 win32: LIBS += -L$$PWD/lib
 LIBS+= -llibopencv_core453 -llibopencv_imgproc453 \
         -llibopencv_imgcodecs453 -llibopencv_video453 \
@@ -35,3 +37,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     capturethread.h \
     videohandler.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -ldlib
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -ldlib
+
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include

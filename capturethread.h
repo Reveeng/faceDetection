@@ -9,6 +9,10 @@
 #include "opencv2/objdetect.hpp"
 #include "opencv2/face/facemark.hpp"
 
+#include "dlib/opencv.h"
+#include "dlib/image_processing/frontal_face_detector.h"
+#include "dlib/image_processing.h"
+
 
 class CaptureThread: public QThread
 {
@@ -28,9 +32,8 @@ private:
     QString m_path;
     QMutex* m_data_lock;
     bool m_running;
-    cv::CascadeClassifier* m_classifier;
-    cv::Ptr<cv::face::Facemark> mark_detector;
     cv::Mat m_frame;
+    dlib::frontal_face_detector detector;
 };
 
 #endif // CAPTURETHREAD_H

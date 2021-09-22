@@ -9,7 +9,9 @@ int main(int argc, char *argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-
+    qmlRegisterType<VideoHandler>(
+            "VideoHandler", 0, 1,
+            "VideoHandler" );
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -18,8 +20,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-    qmlRegisterType<VideoHandler>(
-            "VideoHandler", 0, 1,
-            "VideoHandler" );
+
     return app.exec();
 }

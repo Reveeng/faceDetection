@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtMultimedia 5.0
+
 import VideoHandler 0.1
 
 Window {
@@ -17,8 +18,9 @@ Window {
 
     VideoOutput{
         source:vd
-        width:640
-        height:480
+        width:1280
+        height:720
+        fillMode: VideoOutput.Stretch
         anchors.left:parent.left
         anchors.top:parent.top
     }
